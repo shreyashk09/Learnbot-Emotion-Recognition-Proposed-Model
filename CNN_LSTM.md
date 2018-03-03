@@ -112,7 +112,7 @@ Fast, simple, accurate, dynamic and very flexible.
 
    -   Using keras pre-processor ImageDataGenerator
 
-    (featurewise\_center, featurewise\_std\_normalization, flip, rotate)
+         (featurewise\_center, featurewise\_std\_normalization, flip, rotate)
 
 5.  Create dynamic sequence of frames (eg.: set max. limit = 100 frames)
 
@@ -130,6 +130,9 @@ MMI, Oulu-CASIA, youtube, etc \[not yet arranged\]
 
 ## Core Model Flowchart
 
+<div align='center'>
+<img src='Images/FACIAL_EMOTION_DETECTION.jpg'  width='400px'>
+</div>
 Nf: number of frames
 
 Frame shape: 64x64x3
@@ -138,10 +141,10 @@ LSTM(6): 6 is number of classes(Happy, Sad, Angry, Disgust, Fear, Surprise)
 
 ## Architecture of code for above methodology:
 
-![Experiments/lstmcnn%20copy-Copy1.ipynb](Experiments/lstmcnn%20copy-Copy1.ipynb)
+[Experiments/lstmcnn copy-Copy1.ipynb](Experiments/lstmcnn copy-Copy1.ipynb)
 
 CNN Model:
-![link](https://github.com/shreyashk09/Emotion-Recognition---Neural-Networks)
+[link](https://github.com/shreyashk09/Emotion-Recognition---Neural-Networks)
 
 The code, displays model.summary() of important models
 (cnnmodel, LSTM). Connection between these models and structure of
@@ -159,9 +162,10 @@ implementation objectives E1 and E2 are also shown.
 
 -   The intensity of expression increases across the sequence (neutral
     to highly expressive)
-
-    ![](media/image5.png){width="4.263888888888889in"
-    height="1.0833333333333333in"}
+    
+<div align='center'>
+<img src='Images/seq_happy.jpg'  width='400px'>
+</div>
 
 -   Thus, the input is \[Nf,64,64,3\], where Nf is number of frames
 
@@ -236,7 +240,7 @@ So, in a separate function,
 <img src='Images/form3.png'  width='400px'>
 </div>
 
-(dot product of gradient and LSTM value)
+<center>(dot product of gradient and LSTM value)</center>
 
 Thus weights are updated multiple times for better classification of
 sequence after each epoch.
@@ -249,14 +253,14 @@ The working model input consists of only a sequence of frames at a time
 Two-Stream Convolutional Networks with LSTM
 
 ConvLSTM2D model
-<div align = 'center'>  
-## Thank You
-</div>
+
+## <div align = 'center'>  Thank You </div>
+
 **Similar codes(CNN-LSTM Video Classifier):**
 
-<https://github.com/keras-team/keras/blob/master/examples/imdb_cnn_lstm.py>
+- <https://github.com/keras-team/keras/blob/master/examples/imdb_cnn_lstm.py>
 
-<https://github.com/topics/video-classification>
+- <https://github.com/topics/video-classification>
 
 **Related research papers:**
 
