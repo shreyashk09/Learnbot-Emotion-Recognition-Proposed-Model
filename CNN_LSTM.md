@@ -106,22 +106,22 @@ Fast, simple, accurate, dynamic and very flexible.
 
 4.  Pre – processing the image:
 
--   Reshaping into (64,64,3)
+   -   Reshaping into (64,64,3)
 
--   Data augmentation (angle, pixel value, etc) \[optional\]
+   -   Data augmentation (angle, pixel value, etc) \[optional\]
 
--   Using keras pre-processor ImageDataGenerator
+   -   Using keras pre-processor ImageDataGenerator
 
     (featurewise\_center, featurewise\_std\_normalization, flip, rotate)
 
-1.  Create dynamic sequence of frames (eg.: set max. limit = 100 frames)
+5.  Create dynamic sequence of frames (eg.: set max. limit = 100 frames)
 
-2.  Sequence of frames feed into our CNN-LSTM core model (*next page
+6.  Sequence of frames feed into our CNN-LSTM core model (*next page
     please*)
 
-3.  Predicted emotion label is output
+7.  Predicted emotion label is output
 
-Libraries: keras, numpy, python, opencv, panda (versions and additional
+**Libraries:** keras, numpy, python, opencv, panda (versions and additional
 lib is to be updated).
 
 ### Dataset:
@@ -130,19 +130,18 @@ MMI, Oulu-CASIA, youtube, etc \[not yet arranged\]
 
 ## Core Model Flowchart
 
-
 Nf: number of frames
 
 Frame shape: 64x64x3
 
-LSTM(6): 6 is number of classes(Happy, sad, angry, disgust, fear, surprise)
+LSTM(6): 6 is number of classes(Happy, Sad, Angry, Disgust, Fear, Surprise)
 
 ## Architecture of code for above methodology:
 
-<https://github.com/shreyashk09/CNN-LSTM-RNN-with-spatio-temporal-feature-representation/blob/master/Experiments/lstmcnn%20copy-Copy1.ipynb>
+![Experiments/lstmcnn%20copy-Copy1.ipynb](Experiments/lstmcnn%20copy-Copy1.ipynb)
 
 CNN Model:
-<https://github.com/shreyashk09/Emotion-Recognition---Neural-Networks>
+![link](https://github.com/shreyashk09/Emotion-Recognition---Neural-Networks)
 
 The code, displays model.summary() of important models
 (cnnmodel, LSTM). Connection between these models and structure of
@@ -182,7 +181,7 @@ implementation objectives E1 and E2 are also shown.
 We know, relation between layers and classification is done by weight
 matrix. So, we try updating weight matrix efficiently (cost function).
 
-**Achieving E1:**
+## Achieving E1:
 
 -   The intensity vectors are TimeDistributed Densed into \[Nf,6\].(each
     frame is densed into 6 parallely)
@@ -200,7 +199,7 @@ Thus, classifies into 6 classes.
 The optimization by E1 highly affects the spatio-temporal feature at the
 last frame of sequence
 
-**Achieving E2:**
+## Achieving E2:
 
 Due to E1 miss-classification could occur when prediction is performed
 at early frames of the sequence.
@@ -245,14 +244,14 @@ sequence after each epoch.
 The working model input consists of only a sequence of frames at a time
 (sequence is updated as soon as new frame is captured by camera)
 
-**Futher imp**
+## Futher imp
 
 Two-Stream Convolutional Networks with LSTM
 
 ConvLSTM2D model
-
-### Thank You
-
+<div align = 'center'>  
+## Thank You
+</div>
 **Similar codes(CNN-LSTM Video Classifier):**
 
 <https://github.com/keras-team/keras/blob/master/examples/imdb_cnn_lstm.py>
