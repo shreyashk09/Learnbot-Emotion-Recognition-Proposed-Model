@@ -131,7 +131,7 @@ MMI, Oulu-CASIA, youtube, etc \[not yet arranged\]
 ## Core Model Flowchart
 
 <div align='center'>
-<img src='Images/FACIAL_EMOTION_DETECTION.jpg'  width='400px'>
+<img src='Images/flowchart.jpg'  width='600px'>
 </div>
 Nf: number of frames
 
@@ -141,7 +141,7 @@ LSTM(6): 6 is number of classes(Happy, Sad, Angry, Disgust, Fear, Surprise)
 
 ## Architecture of code for above methodology:
 
-[Experiments/lstmcnn copy-Copy1.ipynb](Experiments/lstmcnn copy-Copy1.ipynb)
+[Experiments/lstmcnn copy-Copy1.ipynb](https://github.com/shreyashk09/CNN-LSTM-RNN-with-spatio-temporal-feature-representation/blob/master/Experiments/lstmcnn%20copy-Copy1.ipynb)
 
 CNN Model:
 [link](https://github.com/shreyashk09/Emotion-Recognition---Neural-Networks)
@@ -254,7 +254,7 @@ Two-Stream Convolutional Networks with LSTM
 
 ConvLSTM2D model
 
-## <div align = 'center'>  Thank You </div>
+**<div align = 'center'>  Thank You </div>**
 
 **Similar codes(CNN-LSTM Video Classifier):**
 
