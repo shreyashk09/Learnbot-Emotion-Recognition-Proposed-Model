@@ -57,10 +57,10 @@ modelling, image captioning, question answering, video to text, etc.
 ## Overview:
 
 CNN-LSTM spatio-temporal Features with Partial Expression Sequences and
-on-the-Fly Prediction can be implemented for emotion detection of camera
+on-the-Fly Prediction can be implemented for emotion recognition over camera
 captured facial images. This algorithm is proposed for dynamic
 classification of expression in real time based on previous rescent
-expressions.
+expressions on the face.
 
 The video captured by the camera is **sequence of frames(images)**,
 having human faces showing emotions. Humans poses emotion expressions on
@@ -76,16 +76,16 @@ We know, CNN features extraction is performed by adjusting weights and
 bias (cost function) between layers. So features vectors are derived for
 each frame. These feature vectors are used for further classification.
 
-Formulating the weights and bias further, based on previous
-classifications (previous weights and biases) we can easily and
+Formulating the weights and bias further based on previous frames
+classification (previous weights and biases), we can easily and
 accurately classify present frames expression.
 
 ## Comparison:
 
-Overcomes anomalies of other models.(CNN, 3d-CNN, Inception, simple
-CNN-LSTM, Deeper CNN)
+Overcomes anomalies of other models.(CNN, 3d-CNN, Inception-CNN, simple
+CNN-LSTM, Deep-CNN, etc)
 
-Fast, simple, accurate, dynamic and very flexible.
+Fast, simple, accurate, dynamic and very flexible. As features and classifactions both are enhanced
 
 <div align='center'>
 <img src='Images/cnn_lstm_diff.jpg'  width='400px'>
@@ -104,7 +104,7 @@ Fast, simple, accurate, dynamic and very flexible.
 
 3.  Multi- Face tracking or single-face (most near) detection.
 
-4.  Pre – processing the image:
+4.  Pre – processing the images:
 
    -   Reshaping into (64,64,3)
 
@@ -116,8 +116,7 @@ Fast, simple, accurate, dynamic and very flexible.
 
 5.  Create dynamic sequence of frames (eg.: set max. limit = 100 frames)
 
-6.  Sequence of frames feed into our CNN-LSTM core model (*next page
-    please*)
+6.  Sequence of frames feed into our CNN-LSTM core model (refer below)
 
 7.  Predicted emotion label is output
 
@@ -248,11 +247,17 @@ sequence after each epoch.
 The working model input consists of only a sequence of frames at a time
 (sequence is updated as soon as new frame is captured by camera)
 
-## Futher imp
+## Steps towards accuracy:
 
-Two-Stream Convolutional Networks with LSTM
+- CNN model used above gives approx 68% accuracy with kaggle FER dataset;
+- Code will be tested with different CNN models(  VGG_face(causes overfitting), 
+         high-low subsampling, low-high sub sampling, multiple-CNN fusion) until satisfactory accuracy is not met.
+- Code will be tested to check wheather creates lag in detection of change in expression(though E1 adn E2 takes care of them) 
+           by varying LSTM efficiency.(also go for convLSTM ) until results aren't tuned with real time.
+- The base concept of model is similar to winning model of Youtube-8M contest.
+           Link: <https://blog.coast.ai/five-video-classification-methods-implemented-in-keras-and-tensorflow-99cad29cc0b5>
 
-ConvLSTM2D model
+- Preprocessing will be preffered to be at low level but efficient.(creates frames lag)
 
 **<div align = 'center'>  Thank You </div>**
 
