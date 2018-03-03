@@ -252,9 +252,9 @@ The working model input consists of only a sequence of frames at a time
 - CNN model used above gives approx 68% accuracy with kaggle FER dataset;
 - Code will be tested with different CNN models(  VGG_face(causes overfitting), 
          high-low subsampling, low-high sub sampling, multiple-CNN fusion) until satisfactory accuracy is not met.
-- Code will be tested to check wheather creates lag in detection of change in expression(though E1 adn E2 takes care of them) 
+- Code will be tested to check wheather it lags in recognition while expression class changes.(though E1 adn E2 takes care of them) 
            by varying LSTM efficiency.(also go for convLSTM ) until results aren't tuned with real time.
-- The base concept of model is similar to winning model of Youtube-8M contest.
+- The base concept of model is similar to the winning model of Youtube-8M contest.
            Link: <https://blog.coast.ai/five-video-classification-methods-implemented-in-keras-and-tensorflow-99cad29cc0b5>
 
 - Preprocessing will be preffered to be at low level but efficient.(creates frames lag)
