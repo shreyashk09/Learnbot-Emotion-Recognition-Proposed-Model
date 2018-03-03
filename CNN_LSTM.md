@@ -87,11 +87,13 @@ CNN-LSTM, Deeper CNN)
 
 Fast, simple, accurate, dynamic and very flexible.
 
-media/image3.png
+<div align='center'>
+<img src='Images/cnn_lstm_diff.jpg'  width='400px'>
+</div>
 
 ## CNN-LSTM spatio temporal feature model
 
-### Methodology:***
+### Methodology:
 
 ***Facial emotion recognition:***
 
@@ -173,14 +175,14 @@ implementation objectives E1 and E2 are also shown.
     Based on these intensity vectors we can improve the classification,
     by fulfilling 2 objectives:
 
-> **E1**: minimizing expression sequence classification error
->
-> **E2**: minimizing the expression intensity prediction error
+**E1**: minimizing expression sequence classification error
+
+**E2**: minimizing the expression intensity prediction error
 
 We know, relation between layers and classification is done by weight
 matrix. So, we try updating weight matrix efficiently (cost function).
 
-**Achieving E1:
+**Achieving E1:**
 
 -   The intensity vectors are TimeDistributed Densed into \[Nf,6\].(each
     frame is densed into 6 parallely)
@@ -190,15 +192,15 @@ matrix. So, we try updating weight matrix efficiently (cost function).
     “categorical\_crossentropy” loss function (also defines gradient
     descent in cost function).
 
-> The gradient of this function(based on entropy of each class (\[6\]))
-> updates weights of LSTM layer.
->
-> Thus, classifies into 6 classes.
+The gradient of this function(based on entropy of each class (\[6\]))
+updates weights of LSTM layer.
+
+Thus, classifies into 6 classes.
 
 The optimization by E1 highly affects the spatio-temporal feature at the
 last frame of sequence
 
-**Achieving E2:
+**Achieving E2:**
 
 Due to E1 miss-classification could occur when prediction is performed
 at early frames of the sequence.
@@ -214,13 +216,16 @@ So, in a separate function,
     cossimilarity over them where the last frame is always taken as apex
     frame.
 
-![](media/image6.png){width="2.05625in" height="0.5368099300087489in"}
+<div align='center'>
+<img src='Images/for1.png'  width='400px'>
+</div>
 
 -   Further min\_max\_normalisation is applied over them and Euclidean
     loss function is implemented.
 
-    ![](media/image7.png){width="1.93125in"
-    height="0.5838659230096238in"}(inbuilt function)
+<div align='center'>
+<img src='Images/for2.png'  width='400px'>
+</div>
 
 -   Weights are taken form E1 final layer (last LSTM layer) and are
     updated and set back into the layer.
@@ -228,7 +233,9 @@ So, in a separate function,
 -   Weights here are updated by gradient of Euclidean loss function in a
     separate model
 
-![](media/image8.png){width="2.43125in" height="0.7754844706911636in"}
+<div align='center'>
+<img src='Images/form3.png'  width='400px'>
+</div>
 
 (dot product of gradient and LSTM value)
 
@@ -238,13 +245,13 @@ sequence after each epoch.
 The working model input consists of only a sequence of frames at a time
 (sequence is updated as soon as new frame is captured by camera)
 
-**Futher imp
+**Futher imp**
 
 Two-Stream Convolutional Networks with LSTM
 
 ConvLSTM2D model
 
-**Thank You**
+### Thank You
 
 **Similar codes(CNN-LSTM Video Classifier):**
 
@@ -254,22 +261,22 @@ ConvLSTM2D model
 
 **Related research papers:**
 
-Learning Spatio-temporal Features with Partial Expression Sequences for
+- Learning Spatio-temporal Features with Partial Expression Sequences for
 on-the-Fly Prediction \[ <https://arxiv.org/pdf/1711.10914.pdf> \]
 
-Differential Generative Adversarial Networks: Synthesizing Non-linear
+- Differential Generative Adversarial Networks: Synthesizing Non-linear
 Facial Variations with Limited Number of Training Data \[
 <https://arxiv.org/pdf/1711.10267v4.pdf> \]
 
-Dynamics Transfer GAN: Generating Video by Transferring Arbitrary
+- Dynamics Transfer GAN: Generating Video by Transferring Arbitrary
 Temporal Dynamics from a Source Video to a Single Target Image \[
 <https://arxiv.org/pdf/1712.03534v1.pdf> \]
 
-Modeling Spatial-Temporal Clues in a Hybrid Deep Learning Framework for
+- Modeling Spatial-Temporal Clues in a Hybrid Deep Learning Framework for
 Video Classification \[ <https://arxiv.org/pdf/1504.01561.pdf> \]
 
-Two-Stream Convolutional Networks for Action Recognition in Videos \[
+- Two-Stream Convolutional Networks for Action Recognition in Videos \[
 <https://arxiv.org/pdf/1406.2199v2.pdf> \]
 
-Modeling Spatial-Temporal Clues in a Hybrid Deep Learning Framework for
+- Modeling Spatial-Temporal Clues in a Hybrid Deep Learning Framework for
 Video Classification \[ <https://arxiv.org/pdf/1504.01561v1.pdf> \]
