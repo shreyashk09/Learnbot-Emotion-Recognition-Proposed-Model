@@ -1,65 +1,60 @@
-**CNN-LSTM spatio-temporal Features **
+# CNN-LSTM spatio-temporal Features with Partial Expression Sequences and on-the-Fly Prediction
 
-**with Partial Expression Sequences **
+## CNN
+<div align='center'>
+<img src='Images/cnn model.jpg'  width='400px'>
+</div>
+   Convolution Neural Networks is said to be the best methodology to learn
+   vast quantity of data(images) with minimal pre-processing and classify
+   them into different categories that too with great accuracy and in real
+   time.
 
-**and on-the-Fly Prediction**
+   The whole model is divided into sections:
 
-**CNN**
+   1.  Feature extraction
 
-![](media/image1.png){width="6.263888888888889in"
-height="3.0229166666666667in"}
+   2.  Classification
 
-Convolution Neural Networks is said to be the best methodology to learn
-vast quantity of data(images) with minimal pre-processing and classify
-them into different categories that too with great accuracy and in real
-time.
+   Feature extraction is implemented by arranging series of layers which
+   subsamples the images and perform operations such as convolutional,
+   batch normalization, ReLU activation, pooling, dropout, etc. And finally
+   all the channels are flattened into array of feature vectors. These are
+   done with equations of weights and bias matrices (cost function).
 
-The whole model is divided into sections:
+   Classification Section, further dense the fully connected layer into
+   classified categories.
 
-1.  Feature extraction
+   **Formulating the classification section (manipulating weights and bias)
+    according to required needs, increases the classification accuracy.**
 
-2.  Classification
+## LSTM
 
-Feature extraction is implemented by arranging series of layers which
-subsamples the images and perform operations such as convolutional,
-batch normalization, ReLU activation, pooling, dropout, etc. And finally
-all the channels are flattened into array of feature vectors. These are
-done with equations of weights and bias matrices (cost function).
+   <div align='center'>
+   <img src='Images/lstm_model.jpg'  width='400px'>
+   </div>
 
-Classification Section, further dense the fully connected layer into
-classified categories.
+   -   Long Short Term Memory(LSTM) networks are capable of learning
+        long-term dependencies. Each block in the sequence is called cell
+        state.
 
-**Formulating the classification section (manipulating weights and bias)
-according to required needs, increases the classification accuracy.**
+   -   Each cell state stores the processed data of previous states. Which
+        helps in predicting present scenario.
 
-***LSTM***
+   -   In each cell, using previous information they perform operation such
+        as select, forget, store, combine, etc over present data. This
+        enhances the feature vector of present data. Hence, gives dynamic
+        approach.
 
-![](media/image2.png){width="6.263888888888889in" height="2.39375in"}
+   -   LSTM is implemented in scenarios where the dataset is sequence of
+        images(video), sequence of words(sentences), to predict the upcoming
+        image or word. 
 
--   Long Short Term Memory(LSTM) networks are capable of learning
-    long-term dependencies. Each block in the sequence is called cell
-    state.
-
--   Each cell state stores the processed data of previous states. Which
-    helps in predicting present scenario.
-
--   In each cell, using previous information they perform operation such
-    as select, forget, store, combine, etc over present data. This
-    enhances the feature vector of present data. Hence, gives dynamic
-    approach.
-
--   LSTM is implemented in scenarios where the dataset is sequence of
-    images(video), sequence of words(sentences), to predict the upcoming
-    image or word.
-
--   
-
-Applications:
+### Applications:
 
 Weather forecasting, word prediction, video frame prediction, language
 modelling, image captioning, question answering, video to text, etc.
 
-***Overview:***
+## Overview:
 
 CNN-LSTM spatio-temporal Features with Partial Expression Sequences and
 on-the-Fly Prediction can be implemented for emotion detection of camera
@@ -85,21 +80,20 @@ Formulating the weights and bias further, based on previous
 classifications (previous weights and biases) we can easily and
 accurately classify present frames expression.
 
-**Comparison:**
+## Comparison:
 
 Overcomes anomalies of other models.(CNN, 3d-CNN, Inception, simple
 CNN-LSTM, Deeper CNN)
 
 Fast, simple, accurate, dynamic and very flexible.
 
-![](media/image3.png){width="6.263888888888889in"
-height="1.7513888888888889in"}
+media/image3.png
 
-**CNN CNN-LSTM**
+## CNN-LSTM spatio temporal feature model
 
-***Methodology:***
+### Methodology:***
 
-***Facial emotion detection:***
+***Facial emotion recognition:***
 
 1.  Camera captures frames of images.
 
@@ -128,36 +122,31 @@ height="1.7513888888888889in"}
 Libraries: keras, numpy, python, opencv, panda (versions and additional
 lib is to be updated).
 
-**Dataset**:
+### Dataset:
 
 MMI, Oulu-CASIA, youtube, etc \[not yet arranged\]
 
-**Other Implementations:**
+## Core Model Flowchart
 
-Features to Learbot…..\[to be discussed\]
-
-**Core Model Flowchart **
-
-![../Developer/CNN%20+%20LSTM(RNN)%20with%20spatio-temporal%20feature%20representation/flowchart.jpg](media/image4.jpeg){width="6.258333333333334in"
-height="5.927777777777778in"}
 
 Nf: number of frames
 
 Frame shape: 64x64x3
 
-LSTM(6): 6 is number of classes
+LSTM(6): 6 is number of classes(Happy, sad, angry, disgust, fear, surprise)
 
-**Architecture of code for above methodology: **
+## Architecture of code for above methodology:
 
 <https://github.com/shreyashk09/CNN-LSTM-RNN-with-spatio-temporal-feature-representation/blob/master/Experiments/lstmcnn%20copy-Copy1.ipynb>
 
 CNN Model:
 <https://github.com/shreyashk09/Emotion-Recognition---Neural-Networks>
-In the code, I’ve tried to display model.summary() of some models
+
+The code, displays model.summary() of important models
 (cnnmodel, LSTM). Connection between these models and structure of
 implementation objectives E1 and E2 are also shown.
 
-***Core Model Explanation***
+## Core Model Explanation
 
 -   The training set consists of “sequences of frames” (video clips).
 
@@ -191,7 +180,7 @@ implementation objectives E1 and E2 are also shown.
 We know, relation between layers and classification is done by weight
 matrix. So, we try updating weight matrix efficiently (cost function).
 
-*Achieving E1: *
+**Achieving E1:
 
 -   The intensity vectors are TimeDistributed Densed into \[Nf,6\].(each
     frame is densed into 6 parallely)
@@ -209,7 +198,7 @@ matrix. So, we try updating weight matrix efficiently (cost function).
 The optimization by E1 highly affects the spatio-temporal feature at the
 last frame of sequence
 
-*Achieving E2:*
+**Achieving E2:
 
 Due to E1 miss-classification could occur when prediction is performed
 at early frames of the sequence.
@@ -233,8 +222,6 @@ So, in a separate function,
     ![](media/image7.png){width="1.93125in"
     height="0.5838659230096238in"}(inbuilt function)
 
-<!-- -->
-
 -   Weights are taken form E1 final layer (last LSTM layer) and are
     updated and set back into the layer.
 
@@ -251,7 +238,7 @@ sequence after each epoch.
 The working model input consists of only a sequence of frames at a time
 (sequence is updated as soon as new frame is captured by camera)
 
-**ALTERNATIVE MODELS ( if accuracy not met or delays output):**
+**Futher imp
 
 Two-Stream Convolutional Networks with LSTM
 
