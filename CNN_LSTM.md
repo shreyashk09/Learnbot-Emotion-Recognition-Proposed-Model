@@ -80,6 +80,15 @@ Formulating the weights and bias further based on previous frames
 classification (previous weights and biases), we can easily and
 accurately classify present frames expression.
 
+### Hardware Requirments:
+**Pi Camera Module:**
+- 2 MP (or above) resolution
+- 1920 x 1080 pixel static images
+- 1080p 30 fps video
+**Raspberry Pi 3 Board:**
+- 1.2GHz 64-bit quad-core processor
+The above specified requirments' best fits are prementioned in [Learnbot Repository](https://github.com/robocomp/learnbot/tree/master/learnbot_desings)
+
 ## Comparison:
 
 Overcomes anomalies of other models.(CNN, 3d-CNN, Inception-CNN, simple
