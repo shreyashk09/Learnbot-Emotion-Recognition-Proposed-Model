@@ -1,3 +1,3 @@
-<center>
-<h1> Learnbot Emotion Recognition Proposed Model</h1>
-</center> 
+<h1>
+<pre>     Learnbot Emotion Recognition Proposed Model</pre>
+</h1> 
