@@ -1,12 +1,10 @@
-## Learnbot – Emotion Recognition
+# Learnbot – Emotion Recognition
 
-## (Idea Proposal)
-
+# (Idea Proposal)
 ##
+## MASKING - FACS - AUs – XGBOOST (2-fold and 1-full classifier)
 
-### Making - FACS - AUs – Xgboost (2-fold and 1-full classifier)
-
-**Aim Of Model:**
+### Aim Of Model:
 
 Our aim is to recognize the emotions of humans examining their facial expressions and classifying them into various emotion classes.
 
@@ -31,15 +29,13 @@ So, now our vision is clear and we focus on how to fulfill them.
 
 
 
-**Hardware Requirements:**
+### Hardware Requirements:
 
-Camera Module:
-
+**Camera Module:**
 - **--** 30 FPS
 - **--** 3 MPixels
 
-CPU System:
-
+**CPU System:**
 - **--** Processor 1.6 GHz base frequency.
 - **--** 2 GB RAM
 - **--** Quad Core
@@ -48,23 +44,23 @@ CPU System:
 
 Minimum of above should be met for trained model to be executed.
 
-**Software Requirements for Model:  **
+### Software Requirements for Model:  
 
 Opencv, Python, Xgboost, Numpy, Matplotlib, imutils, Sckilite,  Qt
 
-**Runtime:**
+### Runtime:
 
-**Technologies and algorithms used:**
+### Technologies and algorithms used:
 
 HOG LB cascades, facial landmarks AAM, face Golden Ratio modeling, Action Units (AUs), Facial Action Coding System(FACS), Xgboost, etc.
 
 ##
 
-**Action Units (AUs) and** **Facial Action Coding System (FACS): **
+### Action Units (AUs) and** **Facial Action Coding System (FACS): 
 
 Emotion expressions on face is possible due to movement of various facial muscles. The Facial Action Coding System (FACS) refers to a set of facial muscle movements that correspond to a displayed emotion. It is an anatomical system for describing all observable facial movements into small units known as Action Units (AUs). AUs determines activeness of different sets of facial muscles at a time.
 
-**Xgboost:**
+### Xgboost:
 
 XGBoost (Extreme Gradient Boosting) is an optimized distributed gradient boosting algorithm. Algorithm is designed to work with numeric values only.
 
@@ -72,9 +68,9 @@ It is also known as &#39; **regularized boosting**&#39; technique because of its
 
 The performance of xgboost is recorded to be more than other famous algorithms like DNN, random forest, etc. It is faster than other algorithms as it implements parallel processing.It helps to correct errors made by previously trained tree thus. Moreover, it allows to define custom optimization objectives and evaluation criteria. User can start training an XGBoost model from its last iteration of previous run, which makes training simpler.
 
-**Flowchart:**
+### Flowchart:
 
-**Overview:**
+### Overview:
 
 The model can be implemented for emotion recognition of human faces captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. The model tries to attain the accuracy and focuses on only required essential parameters.  It is designed such that it performs the suitable processes in parallel in order to reduce the runtime.
 
@@ -98,11 +94,7 @@ In parallel, another **Xgboost** model will classify emotion directly from featu
 
 The model is trained with sequence of expression frames starting with less expressive to most expressive. Thus, face with any intensity of expression can be classified easily.
 
-**Hardware Requirements:**
-
-
-
-**Methodology:**
+### Methodology:
 
 1. Image frame is captured by Learnbot camera in real – time.
 2. Cascades are used for detecting faces and cropping (into 64 x 64).
@@ -119,7 +111,7 @@ The model is trained with sequence of expression frames starting with less expre
 12. Probability results from both the models are combined to give a precise predicted emotion probability and label.
 13. The result is then dynamically represented on screen graphically with necessary parameters.
 
-**Face Detection and Ranking:**
+### Face Detection and Ranking:
 
 The captured images using Learnbot&#39;s camera may contain one or more faces at a time. The whole frame is investigated using Cascades for face detection from front view to profile view. The face – rectangles are then cropped are reshaped into 64 x 64 squares.
 
@@ -130,7 +122,7 @@ The face - rectangles are of different sizes and located at different location a
 
 
 
-**Pre - Processing:**
+### Pre - Processing:
 
 The face frame of 64 X 64 is then converted into grayscale from RGB form. It is then normalized and edges are sharpened by tuning opencv inbuilt function createCLAHE.
 
@@ -138,7 +130,7 @@ This is performed so that it reduces the runtime during skin texture detection, 
 
 The model shows no requirement of any heavy or additional preprocessing and face alignments, it works deals with the challenges more efficiently. (discussed in Masking).
 
-**Facial Landmarks:**
+### Facial Landmarks:
 
 Upon minimum pre-processing, the image becomes suitable to derive facial landmarks which could be further used to extract facial features.
 
@@ -148,9 +140,9 @@ The initial frame landmarks are estimated using Active Appearance Model (AAM). A
 
 Further in consecutive frames Lucas–Kanade (LK) optical flow tracker can be used by estimating the displacements of the feature points.
 
-**Face Masking:**
+### Face Masking:
 
-**(MOST IMPOTANT PHASE) (motivation:**  **Candide Wireframe Model**** )**
+**(MOST IMPOTANT PHASE) (motivation:**  **Candide Wireframe Model)**
 
 The facial landmarks are very sensitive to the movements of facial muscles. Each person has unique face structure and gives vivid poses at different point of time. To study the pattern followed by vector displacement of these facial landmarks for any given expression, we generate mask over the face such that details extracted from them can be compared across the frames.
 
@@ -204,7 +196,7 @@ It is just to bring extreme different face architecture into comparable range.  
 
 
 
-**Multi - Cascade Detectors:**
+### Multi - Cascade Detectors:
 
 Some of the most important facial muscles show their movements in form of skin texture. These are the case where landmarks may not show drastic movements but the skin texture is enough to determine face expression features.
 
@@ -218,7 +210,7 @@ The outcome of cascading is defined as expression feature intensity and represen
 
 
 
-**AUs Xgboost (xgb\_1\_1):**
+### AUs Xgboost (xgb\_1\_1):
 
 The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38
 
@@ -226,23 +218,23 @@ A xgboost model is created where inputs are the face feature vectors, and the ou
 
 We get required active AUs probabilities, classified based upon given feature vectors.
 
-**Xgboost Classifier(xgb\_1\_2):**
+### Xgboost Classifier(xgb\_1\_2):
 
 The second fold Xgboost model is based upon activeness of various AUs to classify an emotion. The classification is performed, by feeding probabilities of AUs active in a frame and computed output is the probabilities of emotions possibly shown.
 
-**Full – Xgboost (xgb\_2):**
+### Full – Xgboost (xgb\_2):
 
 Due to less accurate prediction of activeness of AUs, the final classification may lead to wrong predictions. Thus to avoid wrong prediction and get accurate probability distribution across emotions, we implement a model computing emotion classification directly based upon feature vectors. The model runs in parallel to 2-fold Xgboost model.
 
-**Fused Result:**
+### Fused Result:
 
 The output, probabilities of emotions from both the model are combined based upon strength of each emotion relative to others.
 
-**Result Presentation:**
+### Result Presentation:
 
 
 
-**Steps towards accuracy:**
+### Steps towards accuracy:
 
 - **--** Similar face alignment across frames
 - **--** Proper selection of feature vectors
