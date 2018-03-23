@@ -1,8 +1,7 @@
+# 
+<pre> <h1>           Learnbot – Emotion Recognition       
 
-# <pre>           Learnbot – Emotion Recognition       </per> 
-
-# <pre>                (Idea Proposal)                 </pre>
-##
+                   (Idea Proposal)</h1> </pre>
 status: model is set. writeup completed. model image onsertion left
 ## <pre>      MASKING - FACS - AUs – XGBOOST (2-fold and 1-full classifier)</pre>
 
