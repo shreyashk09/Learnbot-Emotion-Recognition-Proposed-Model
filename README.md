@@ -1,4 +1,4 @@
-  <h1><pre>     Learnbot Emotion Recognition Proposed Model</pre></h1> 
+  <h1><pre>     Learnbot Emotion Recognition Proposal Model</pre></h1> 
 
 ### Documentation: 
 
