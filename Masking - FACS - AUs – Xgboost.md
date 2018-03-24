@@ -71,6 +71,10 @@ The performance of xgboost is recorded to be more than other famous algorithms l
 
 ## Flowchart:
 
+  <div align='center'>
+  <img src='M_Images/FACS_XGBOOST.jpg'  width='400px'>
+  </div>
+  
 ## Overview:
 
 The model can be implemented for emotion recognition of human faces captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. The model tries to attain the accuracy and focuses on only required essential parameters.  It is designed such that it performs the suitable processes in parallel in order to reduce the runtime.
@@ -120,16 +124,24 @@ The face - rectangles are of different sizes and located at different location a
 
 - **--** Ranking based upon size of face-rectangle (measured diagonally) in descending order i.e., larger rectangle is ranked prior to smaller ones. (seems to be near and more interactive)
 - **--** Ranking based upon displacement form center. Person at center should be prioritized.
-
-
+  
+  <div align='center'>
+  <img src='M_Images/rank.png'  width='500px'>
+  </div>
 
 ## Pre - Processing:
 
 The face frame of 64 X 64 is then converted into grayscale from RGB form. It is then normalized and edges are sharpened by tuning opencv inbuilt function createCLAHE.
 
-This is performed so that it reduces the runtime during skin texture detection, and positioning o facial landmarks.
+This is performed so that it reduces the runtime during skin texture detection, and positioning of facial landmarks.
 
 The model shows no requirement of any heavy or additional preprocessing and face alignments, it works deals with the challenges more efficiently. (discussed in Masking).
+ 
+ <div align='center'>
+  <img src='M_Images/pp/original.png'  width='200px'>
+  <img src='M_Images/pp/gray.png'  width='200px'>
+  <img src='M_Images/pp/clahe.png'  width='200px'>
+  </div>
 
 ## Facial Landmarks:
 
@@ -140,6 +152,11 @@ The facial landmarks are accumulated based upon pose of face in XZ – plane and
 The initial frame landmarks are estimated using Active Appearance Model (AAM). An AAM face model consists a shape model and a texture model. The fitting procedure iteratively adjust the model until satisfy.
 
 Further in consecutive frames Lucas–Kanade (LK) optical flow tracker can be used by estimating the displacements of the feature points.
+  <div align='center'>
+  <img src='M_Images/alp2.png'  width='300px'>
+  <img src='M_Images/alp1.png'  width='500px'>
+  <img src='M_Images/alp3.png'  width='300px'>
+  </div>
 
 ## Face Masking:
 
@@ -149,7 +166,7 @@ The facial landmarks are very sensitive to the movements of facial muscles. Each
 
 The architecture of the mask is motivated from **Candide Wireframe Model**. The driving forces exerted during change in expression intensities are the distance between nodes and **angles at intersections in wireframe**.
 
-The angles at intersections don&#39;t change with change orientation of face about z-axis or with any change in size (aspect ratio is constant) of the face frame for any given expression intensity.
+The angles at intersections don't change with change orientation of face about z-axis or with any change in size (aspect ratio is constant) of the face frame for any given expression intensity.
 
 Inorder to find the change in these driving forces we subtract the present frame mask&#39;s details with mask&#39;s details of neutral expression. The result is change in angles and displacements of nodes.
 
@@ -158,7 +175,9 @@ To make it possible we first need to normalize the face within the frame and nor
 **Normalization of feature vectors within the face frame:**
 
 Face pose at different angles in 3D, this leads to compression and expansion of angles within a face according to degree of inclination.
-
+  <div align='center'>
+  <img src='Images/database.png'  width='400px'>
+  </div>
 Example:
 
 Let, a person looks diagonally at an angle towards right-bottom. The angles between wireframes of left eyebrow will be relatively greater than right eyebrow&#39;s for same expression as compared to normal pose angles of same expression.
@@ -205,15 +224,21 @@ To determine these skin textures at different regions of the face, various &quot
 
 The cascades are trained using opencv functions **opencv\_haartraining and opencv\_traincascade.** They apply **HOG – LB** filters.
 
-Each Cascade&#39;s region of implementation is determined by nearest landmarks&#39; locations respectively.
+Each Cascade's region of implementation is determined by nearest landmarks&#39; locations respectively.
 
 The outcome of cascading is defined as expression feature intensity and represented in form of binary {0,1}.
 
-
+  <div align='center'>
+  <img src='Images/database.png'  width='400px'>
+  </div>
 
 ## AUs Xgboost (xgb\_1\_1):
 
 The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38
+
+  <div align='center'>
+  <img src='Images/database.png'  width='400px'>
+  </div>
 
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
 
@@ -232,7 +257,10 @@ Due to less accurate prediction of activeness of AUs, the final classification m
 The output, probabilities of emotions from both the model are combined based upon strength of each emotion relative to others.
 
 ## Result Presentation:
-
+  
+  <div align='center'>
+  <video src='Images/database.png'  width='400px'>
+  </div>
 
 
 ## Steps towards accuracy:
