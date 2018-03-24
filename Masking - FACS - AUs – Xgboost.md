@@ -208,7 +208,7 @@ Thus,
  <div align='center'>
   <img src='M_Images/vecform.png'  width='800px' height='50'>
   </div>
-To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume time (3D matrix) and don&#39;t we gives required solution. **So, we take relative variation of angles within a feature for each feature within a frame.** This solves problem of any pose angles.
+To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume time (3D matrix) and don&#39;t we gives required solution. **So, we take relative variation of angle between wireframes for each feature within a frame and mutiply bya constant vaue(like 10)** This solves problem of any pose angles.
 
 **Normalization of feature vector across the faces frames:** 
 
