@@ -2,7 +2,6 @@
 <pre> <h1>           Learnbot – Emotion Recognition       
 
                    (Idea Proposal)</h1> </pre>
-status: model is set. writeup completed. model image onsertion left
 ## <pre>      MASKING - FACS - AUs – XGBOOST (2-fold and 1-full classifier)</pre>
 
 ### Aim Of Model:
@@ -198,7 +197,17 @@ Face pose at different angles in 3D, this leads to compression and expansion of 
 Example:
 
 Let, a person looks diagonally at an angle towards right-bottom. The angles between wireframes of left eyebrow will be relatively greater than right eyebrow&#39;s for same expression as compared to normal pose angles of same expression.
-
+Thus,
+***Feature Extraction:***
+  <div align='center'>
+  <img src='M_Images/1.png'  width='200px' height='200'>
+  <img src='M_Images/2.png'  width='200px' height='200'>
+  <img src='M_Images/3.png'  width='200px' height='200'>
+  <img src='M_Images/4.png'  width='200px' height='200'>
+  </div>
+ <div align='center'>
+  <img src='M_Images/vecform.png'  width='800px' height='50'>
+  </div>
 To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume time (3D matrix) and don&#39;t we gives required solution. **So, we take relative variation of angles within a feature for each feature within a frame.** This solves problem of any pose angles.
 
 **Normalization of feature vector across the faces frames:** 
@@ -219,10 +228,15 @@ If the front view of face in the frame is visible clearly i.e., pose angle is le
 
 **HALF MASK:**
 <div align='center'>
-  <img src='M_Images/maskl.png'  width='210'>
-  <img src='M_Images/makr.png'  width='200'>
+  <img src='M_Images/maskl.png'  width='210' height='200'>
+  <img src='M_Images/makr.png'  width='200' height='200' >
   </div>
-If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half. We calculate only for visible side and consider the same for both sides.
+ <div align='center'>
+  <img src='M_Images/ajr1.png'  width='200' height='225'>
+  <img src='M_Images/ajr2.png'  width='200' height='225'>
+  <img src='M_Images/ajr3.png'  width='300' height='225'>
+  </div> 
+If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. ***The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half.*** We calculate only for visible side and consider the same for both sides.
 
 **Golden Ratio:**
 
