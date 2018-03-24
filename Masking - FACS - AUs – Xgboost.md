@@ -319,6 +319,10 @@ Due to less accurate prediction of activeness of AUs, the final classification m
 
 The output, probabilities of emotions from both the model are combined based upon strength of each emotion relative to others from each model.
 
+<div align='center'>
+  <image src='M_Images/outputform.png'  width='800px' height='250'></video>
+  </div>
+  
 ## Result Presentation:
   
   <div align='center'>
@@ -329,6 +333,7 @@ The output, probabilities of emotions from both the model are combined based upo
 ## Steps towards accuracy:
 
 - **--** Similar face alignment across frames
+- **--** Customising facial landmark positioning, and cascades as per emotion-faces and pose angles
 - **--** Proper selection of feature vectors
 - **--** Perfect masking
 - **--** Accuracy can be gained further by tuning of the Xgboost models
