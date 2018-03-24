@@ -190,10 +190,10 @@ To make it possible we first need to normalize the face within the frame and nor
 
 Face pose at different angles in 3D, this leads to compression and expansion of angles within a face according to degree of inclination.
   <div align='center'>
-  <img src='M_Images/angles/angle1'  width='200px'>
-  <img src='M_Images/angles/angle2'  width='200px'>
-  <img src='M_Images/angles/angle4'  width='200px'>
-  <img src='M_Images/angles/angle3'  width='200px'>
+  <img src='M_Images/angles/angle1.png'  width='200px'>
+  <img src='M_Images/angles/angle2.png'  width='200px'>
+  <img src='M_Images/angles/angle4.png'  width='200px'>
+  <img src='M_Images/angles/angle3.png'  width='200px'>
   </div>
 Example:
 
@@ -219,7 +219,7 @@ If the front view of face in the frame is visible clearly i.e., pose angle is le
 
 **HALF MASK:**
 <div align='center'>
-  <img src='M_Images/maskl.png'  width='200'>
+  <img src='M_Images/maskl.png'  width='225'>
   <img src='M_Images/makr.png'  width='200'>
   </div>
 If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half. We calculate only for visible side and consider the same for both sides.
@@ -272,6 +272,7 @@ The outcome of cascading is defined as expression feature intensity and represen
   <img src='M_Images/csd_ha.png'  width='175px'>
   <img src='M_Images/csd_sa.png'  width='175px'>
   <img src='M_Images/csd_fe.png'  width='175px'>
+   </div><div align='center'>
   <img src='M_Images/csd_an.png'  width='175px'>
   <img src='M_Images/csd_di.png'  width='175px'>
   </div>
@@ -282,7 +283,7 @@ The clusters of various face expression feature vectors can be formed to define 
 
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
   <div align='center'>
-  <img src='M_Images/facs.png'  width='400px'>
+  <img src='M_Images/facs.png'  width='500px'>
   </div>
 We get required active AUs probabilities, classified based upon given feature vectors.
 
@@ -301,7 +302,7 @@ The output, probabilities of emotions from both the model are combined based upo
 ## Result Presentation:
   
   <div align='center'>
-  <image src='M_Images/1080p.gif'  width='400px'></video>
+  <image src='M_Images/1080p.gif'  width='500px'></video>
   </div>
 
 
