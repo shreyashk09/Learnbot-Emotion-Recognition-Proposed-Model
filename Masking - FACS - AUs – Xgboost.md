@@ -172,13 +172,12 @@ The architecture of the mask is motivated from **Candide Wireframe Model**. The 
   <div align='center'>
   <img src='M_Images/mask_front.jpg'  width='400px'>
   </div>
+  
   <div align='center'>
-  <img src='M_Images/ltop.png'  width='400px'>
-  <img src='M_Images/rtop.png'  width='400px'>
-  </div>
-  <div align='center'>
-  <img src='M_Images/lbot.png'  width='400px'>
-  <img src='M_Images/rbot.png'  width='400px'>
+  <img src='M_Images/rtop.png'  width='200px'>
+  <img src='M_Images/ltop.png'  width='200px'>
+  <img src='M_Images/rbot.png'  width='200px'>
+  <img src='M_Images/lbot.png'  width='200px'>
   </div>
   
 The angles at intersections don't change with change orientation of face about z-axis or with any change in size (aspect ratio is constant) of the face frame for any given expression intensity.
@@ -217,8 +216,8 @@ If the front view of face in the frame is visible clearly i.e., pose angle is le
 
 **HALF MASK:**
 <div align='center'>
-  <img src='M_Images/maskl.png'  width='400px'>
-  <img src='M_Images/maskr.png'  width='400px'>
+  <img src='M_Images/maskl.png'  width='200'>
+  <img src='M_Images/makr.png'  width='200'>
   </div>
 If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half. We calculate only for visible side and consider the same for both sides.
 
@@ -269,7 +268,7 @@ The clusters of various face expression feature vectors can be formed to define 
 
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
   <div align='center'>
-  <img src='M_Images/facs.jpg'  width='300px'>
+  <img src='M_Images/facs.png'  width='400px'>
   </div>
 We get required active AUs probabilities, classified based upon given feature vectors.
 
