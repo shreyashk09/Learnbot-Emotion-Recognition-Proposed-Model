@@ -213,7 +213,12 @@ If the front view of face in the frame is not visible clearly i.e., pose angle i
 Golden Ratio is the most perfect fitting number, i.e, it fits shapes reduced with this ratio upto infinity within a single frame. An ideal face is said to have feature positioned relatively based on this Golden Ratio and it derivatives.
 
 Even with a perfectly proportioned face though, there are endless variations in the shapes and sizes of each facial feature (eyes, eyebrows, lips, nose, etc.) that gives rise to the distinctive appearance of each person and provide for endless variations.
-
+  <div align='center'>
+  <img src='M_Images/.jpg'  width='200px'>
+  <img src='M_Images/golden ratio2.jpg'  width='200px'>
+  <img src='M_Images/golden ratio3.png'  width='200px'>
+  <img src='M_Images/lips.jpg'  width='200px'>
+  </div>
 But, in our case **we don&#39;t need any exact shape, size or even relative position of features.** We just need a approximate constant value that can subtracted from the expression mask to normalise across frames which varies negligibly with across the frames.
 
 It is just to bring extreme different face architecture into comparable range.    The relative position is not required between them, we just require inner approximate aspect ratio(angles) of a feature. Inter features are not compared. And moreover, these angles of a feature are taken as probability (angle/average(angles)), so they are again normalised within a frame itself.
@@ -235,13 +240,13 @@ Each Cascade's region of implementation is determined by nearest landmarks&#39; 
 The outcome of cascading is defined as expression feature intensity and represented in form of binary {0,1}.
  
   <div align='center'>
-  <img src='M_Images/csd_ha.jpg'  width='200px'>
-  <img src='M_Images/csd_sa.png'  width='200px'>
-  <img src='M_Images/csd_fe.jpg'  width='200px'>
+  <img src='M_Images/csd_ha.png'  width='175px'>
+  <img src='M_Images/csd_sa.png'  width='175px'>
+  <img src='M_Images/csd_fe.png'  width='175px'>
   </div>
   <div align='center'>
-  <img src='M_Images/csd_an.jpg'  width='200px'>
-  <img src='M_Images/csd_di.jpg'  width='200px'>
+  <img src='M_Images/csd_an.png'  width='175px'>
+  <img src='M_Images/csd_di.png'  width='175px'>
   </div>
 
 ## AUs Xgboost (xgb\_1\_1):
@@ -249,7 +254,9 @@ The outcome of cascading is defined as expression feature intensity and represen
 The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38
 
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
-
+  <div align='center'>
+  <img src='M_Images/facs.jpg'  width='300px'>
+  </div>
 We get required active AUs probabilities, classified based upon given feature vectors.
 
 ## Xgboost Classifier(xgb\_1\_2):
@@ -267,7 +274,7 @@ The output, probabilities of emotions from both the model are combined based upo
 ## Result Presentation:
   
   <div align='center'>
-  <video src='M_Images/output.mov'  width='400px'></video>
+  <image src='M_Images/1080p.gif'  width='400px'></video>
   </div>
 
 
