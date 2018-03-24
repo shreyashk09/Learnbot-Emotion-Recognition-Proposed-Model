@@ -136,13 +136,13 @@ The face frame of 64 X 64 is then converted into grayscale from RGB form. It is 
 This is performed so that it reduces the runtime during skin texture detection, and positioning of facial landmarks.
 
 The model shows no requirement of any heavy or additional preprocessing and face alignments, it works deals with the challenges more efficiently. (discussed in Masking).
- 
+Preprocessing: original image-->gray image-->clahe image
  <div align='center'>
   <img src='M_Images/pp/original.png'  width='250px'>
   <img src='M_Images/pp/gray.png'  width='250px'>
   <img src='M_Images/pp/clahe.png'  width='250px'>
   </div>
-<pre>   original image    gray image    clahe image</pre>
+  
 ## Facial Landmarks:
 
 Upon minimum pre-processing, the image becomes suitable to derive facial landmarks which could be further used to extract facial features.
@@ -153,11 +153,13 @@ The initial frame landmarks are estimated using Active Appearance Model (AAM). A
 
 Further in consecutive frames Lucas–Kanade (LK) optical flow tracker can be used by estimating the displacements of the feature points.
   <div align='center'>
-  <img src='M_Images/alp2.png'  width='300px'>
-  
-  <img src='M_Images/alp1.png'  width='500px'>
-  
-  <img src='M_Images/alp3.png'  width='300px'>
+  <p><img src='M_Images/alp2.png'  width='275px'>
+  </p>
+ <p> <img src='M_Images/alp1.png'  width='500px'>
+  </p>
+  <p>
+  <img src='M_Images/alp3.png'  width='2750px'>
+  </p>
   </div>
 
 ## Face Masking:
