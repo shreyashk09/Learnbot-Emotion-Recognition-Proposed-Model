@@ -1,9 +1,9 @@
-# Learnbot – Emotion Recognition       
+# 
+<pre> <h1>           Learnbot – Emotion Recognition       
 
-# (Idea Proposal)
-##
+                   (Idea Proposal)</h1> </pre>
 status: model is set. writeup completed. model image onsertion left
-## MASKING - FACS - AUs – XGBOOST (2-fold and 1-full classifier)
+## <pre>      MASKING - FACS - AUs – XGBOOST (2-fold and 1-full classifier)</pre>
 
 ### Aim Of Model:
 
@@ -57,7 +57,7 @@ HOG LB cascades, facial landmarks AAM, face Golden Ratio modeling, Action Units 
 
 ##
 
-### Action Units (AUs) and** **Facial Action Coding System (FACS): 
+### Action Units (AUs) and Facial Action Coding System (FACS): 
 
 Emotion expressions on face is possible due to movement of various facial muscles. The Facial Action Coding System (FACS) refers to a set of facial muscle movements that correspond to a displayed emotion. It is an anatomical system for describing all observable facial movements into small units known as Action Units (AUs). AUs determines activeness of different sets of facial muscles at a time.
 
@@ -131,7 +131,7 @@ This is performed so that it reduces the runtime during skin texture detection, 
 
 The model shows no requirement of any heavy or additional preprocessing and face alignments, it works deals with the challenges more efficiently. (discussed in Masking).
 
-### Facial Landmarks:
+## Facial Landmarks:
 
 Upon minimum pre-processing, the image becomes suitable to derive facial landmarks which could be further used to extract facial features.
 
