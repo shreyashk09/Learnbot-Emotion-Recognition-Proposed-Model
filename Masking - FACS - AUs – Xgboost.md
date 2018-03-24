@@ -9,11 +9,11 @@ status: model is set. writeup completed. model image onsertion left
 
 Our aim is to recognize the emotions of humans examining their facial expressions and classifying them into various emotion classes.
 
-The model should recognize the emotion in real – time and should be very fast.
+The model should recognize the emotions in real – time and should be very fast.
 
-The model should recognize emotion by performing moderate computations (no complex computations like DNNs) but should be very accurate.
+The model should recognize emotions by performing moderate computations (no complex computations like DNNs) but should be very accurate.
 
-Emotion of the person is to be recognized can possess various poses of the face and the architecture of face may differ from one another.
+Emotions of a person is to be recognized can possess various poses of the face and the architecture of face may differ from one another.
 
 So, now our vision is clear and we focus on how to fulfill them.
 
@@ -67,7 +67,7 @@ XGBoost (Extreme Gradient Boosting) is an optimized distributed gradient boostin
 
 It is also known as &#39; **regularized boosting**&#39; technique because of its techniques to reduce overfitting problem automatically even with less training data.
 
-The performance of xgboost is recorded to be more than other famous algorithms like DNN, random forest, etc. It is faster than other algorithms as it implements parallel processing.It helps to correct errors made by previously trained tree thus. Moreover, it allows to define custom optimization objectives and evaluation criteria. User can start training an XGBoost model from its last iteration of previous run, which makes training simpler.
+The performance of xgboost is recorded to be more than other famous algorithms like DNN, random forest, etc. It is faster than other algorithms as it implements parallel processing.It helps to correct errors made by previously trained tree thus. Moreover, it allows to define custom optimization objectives and evaluation criteria. We can even start training an XGBoost model from its last iteration of previous run, which makes training simpler.
 
 ## Flowchart:
 
@@ -77,11 +77,11 @@ The performance of xgboost is recorded to be more than other famous algorithms l
   
 ## Overview:
 
-The model can be implemented for emotion recognition of human faces captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. The model tries to attain the accuracy and focuses on only required essential parameters.  It is designed such that it performs the suitable processes in parallel in order to reduce the runtime.
+The model can be implemented for emotions recognition of human faces captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. The model tries to attain the accuracy and focuses on only required essential parameters.  It is designed such that it performs the suitable processes in parallel in order to reduce the runtime.
 
-During training phase, the model takes the inputs in the form of sequence of frames of each expression. This helps to classify the emotions accurately even at less expression features intensity. In runtime, the model is feed with captured images by Learnbot&#39;s camera module in real time.
+During training phase, the model takes the inputs in the form of sequence of frames of each expression. This helps to classify the emotions accurately even at less expression features intensity. In runtime, the model is fed with captured images by Learnbot&#39;s camera module in real time.
 
-The model is designed, as such don&#39;t require any sort of **pre-processing** and **face –alignment** as such. In order to reduce run-time and increase accuracy of further processes the image is grayscale and enhanced.
+The model is designed, don&#39;t require any sort of **pre-processing** and **face –alignment** as such. In order to reduce run-time and increase accuracy of further processes the image is grayscale and enhanced.
 
 As the classification is carried into 5 prime emotions (and neutral), extracting key facial features is sufficient. To determine the feature vectors form the detected face frame, we plot **facial landmarks** over the face using AAM along with Lucas – Kanade (LK) algorithms. The facial landmarks are used to develop a **wireframe** across the face called as **mesh**. The details are extracted from the mesh as facial feature vectors. The mesh scientifically designed to fulfil multiple challenges.
 
@@ -91,7 +91,7 @@ To learn from facial skin textures (wrinkles) we implement a simple **HOG-LB cas
 
 An approximate but accurate enough, neutral expression mesh is generated for the same face detected using the &quot; **Golden Ratios**&quot;. The driving forces are calculated between the &quot;expressive mask&quot; and &quot;neutral mask&quot;. The driving forces as well as the independent facial feature of expressive frame is combined in a list to form Feature Vectors List. The list is traversed across the following Xgboost Classifier to get the predicted emotion.
 
-These feature vectors can be clustered into groups representing various unique face actions called as &quot; **Action units**&quot;. The combinations of these Action Units predict different emotion emotion.
+These feature vectors can be clustered into groups representing various unique face actions called as &quot; **Action units**&quot;. The combinations of these Action Units helps to predict different emotions.
 
  The feature vectors are transformed to the **first level Xgboost** to determine the Action Units (AUs) of the corresponding expression sequences. Finally, the detected AUs are inputed into the **second level Xgboost** for facial expressions classification.
 
@@ -107,8 +107,8 @@ The model is trained with sequence of expression frames starting with less expre
 3. The face is to grayscale and applying cv.createCLAHE tuner.
 4. Facial Landmarks are positioned across the face using AAM and further dynamically re - localized using Lucas – Kanade method.
 5. Face is masked with a wireframes and feature vectors are extracted.
-6. Parallel to step 5, a mask for neutral expression is generated based on &quot;Golden Formula&quot; and feature vector are extracted. (Pose angle is estimated)
-7. Multi – Cascade detectors are implemented in parallel to step 6 and 7
+6. Parallel to step 5, a mask for neutral expression is generated based on &quot;Golden Formula&quot; and feature vectors are extracted. (Pose angle is estimated)
+7. Multi – Cascade detectors are implemented in parallel to step 5 and 6
 8. Force vectors are extracted from the masks and appended to the feature vectors list.
 9. 1st fold Xgboost AU classifiers model (FACS) is used to determine probabilities of active Action Units.
 10. 2nd fold Xgboost emotion classifier model is implemented to classify probability of emotion predicted based upon AUs activation probability.
@@ -169,7 +169,18 @@ Further in consecutive frames Lucas–Kanade (LK) optical flow tracker can be us
 The facial landmarks are very sensitive to the movements of facial muscles. Each person has unique face structure and gives vivid poses at different point of time. To study the pattern followed by vector displacement of these facial landmarks for any given expression, we generate mask over the face such that details extracted from them can be compared across the frames.
 
 The architecture of the mask is motivated from **Candide Wireframe Model**. The driving forces exerted during change in expression intensities are the distance between nodes and **angles at intersections in wireframe**.
-
+  <div align='center'>
+  <img src='M_Images/mask_front.jpg'  width='400px'>
+  </div>
+  <div align='center'>
+  <img src='M_Images/ltop.png'  width='400px'>
+  <img src='M_Images/rtop.png'  width='400px'>
+  </div>
+  <div align='center'>
+  <img src='M_Images/lbot.png'  width='400px'>
+  <img src='M_Images/rbot.png'  width='400px'>
+  </div>
+  
 The angles at intersections don't change with change orientation of face about z-axis or with any change in size (aspect ratio is constant) of the face frame for any given expression intensity.
 
 Inorder to find the change in these driving forces we subtract the present frame mask&#39;s details with mask&#39;s details of neutral expression. The result is change in angles and displacements of nodes.
@@ -180,7 +191,7 @@ To make it possible we first need to normalize the face within the frame and nor
 
 Face pose at different angles in 3D, this leads to compression and expansion of angles within a face according to degree of inclination.
   <div align='center'>
-  <img src='Images/database.png'  width='400px'>
+  <img src='M_Images/database.png'  width='400px'>
   </div>
 Example:
 
@@ -205,7 +216,10 @@ Thus, masks are appropriate for classification into different expression classes
 If the front view of face in the frame is visible clearly i.e., pose angle is less than or equal **threshold angle (alpha),** we use our full mask.
 
 **HALF MASK:**
-
+<div align='center'>
+  <img src='M_Images/maskl.png'  width='400px'>
+  <img src='M_Images/maskr.png'  width='400px'>
+  </div>
 If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half. We calculate only for visible side and consider the same for both sides.
 
 **Golden Ratio:**
@@ -214,7 +228,7 @@ Golden Ratio is the most perfect fitting number, i.e, it fits shapes reduced wit
 
 Even with a perfectly proportioned face though, there are endless variations in the shapes and sizes of each facial feature (eyes, eyebrows, lips, nose, etc.) that gives rise to the distinctive appearance of each person and provide for endless variations.
   <div align='center'>
-  <img src='M_Images/.jpg'  width='200px'>
+  <img src='M_Images/golden ratio1.jpg'  width='200px'>
   <img src='M_Images/golden ratio2.jpg'  width='200px'>
   <img src='M_Images/golden ratio3.png'  width='200px'>
   <img src='M_Images/lips.jpg'  width='200px'>
@@ -269,7 +283,7 @@ Due to less accurate prediction of activeness of AUs, the final classification m
 
 ## Fused Result:
 
-The output, probabilities of emotions from both the model are combined based upon strength of each emotion relative to others.
+The output, probabilities of emotions from both the model are combined based upon strength of each emotion relative to others from each model.
 
 ## Result Presentation:
   
