@@ -190,7 +190,7 @@ To make it possible we first need to normalize the face within the frame and nor
 
 Face pose at different angles in 3D, this leads to compression and expansion of angles within a face according to degree of inclination.
   <div align='center'>
-  <img src='M_Images/angles/angle1.png'  width='200px'>
+  <img src='M_Images/angles/anlge1.png'  width='200px'>
   <img src='M_Images/angles/angle2.png'  width='200px'>
   <img src='M_Images/angles/angle4.png'  width='200px'>
   <img src='M_Images/angles/angle3.png'  width='200px'>
@@ -219,7 +219,7 @@ If the front view of face in the frame is visible clearly i.e., pose angle is le
 
 **HALF MASK:**
 <div align='center'>
-  <img src='M_Images/maskl.png'  width='225'>
+  <img src='M_Images/maskl.png'  width='210'>
   <img src='M_Images/makr.png'  width='200'>
   </div>
 If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half. We calculate only for visible side and consider the same for both sides.
