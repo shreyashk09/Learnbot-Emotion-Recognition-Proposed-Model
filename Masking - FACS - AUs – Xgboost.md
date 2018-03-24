@@ -228,29 +228,25 @@ To determine these skin textures at different regions of the face, various &quot
 
 The cascades are trained using opencv functions **opencv\_haartraining and opencv\_traincascade.** They apply **HOG – LB** filters.
   <div align='center'>
-  <img src='M_Images/cas_n.jpg'  width='300px'>
+  <img src='M_Images/cas_n.jpg'  width='200px'>
   </div>
 Each Cascade's region of implementation is determined by nearest landmarks&#39; locations respectively.
 
 The outcome of cascading is defined as expression feature intensity and represented in form of binary {0,1}.
-
+ 
   <div align='center'>
-  <img src='M_Images/database.png'  width='400px'>
+  <img src='M_Images/csd_ha.jpg'  width='200px'>
+  <img src='M_Images/csd_sa.png'  width='200px'>
+  <img src='M_Images/csd_fe.jpg'  width='200px'>
+  </div>
+  <div align='center'>
+  <img src='M_Images/csd_an.jpg'  width='200px'>
+  <img src='M_Images/csd_di.jpg'  width='200px'>
   </div>
 
 ## AUs Xgboost (xgb\_1\_1):
 
 The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38
-
-  <div align='center'>
-  <img src='M_Images/csd_ha.jpg'  width='300px'>
-  <img src='M_Images/csd_sa.png'  width='300px'>
-  <img src='M_Images/csd_fe.jpg'  width='300px'>
-  </div>
-  <div align='center'>
-  <img src='M_Images/csd_an.jpg'  width='300px'>
-  <img src='M_Images/csd_di.jpg'  width='300px'>
-  </div>
 
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
 
