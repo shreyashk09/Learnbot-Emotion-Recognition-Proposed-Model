@@ -190,7 +190,10 @@ To make it possible we first need to normalize the face within the frame and nor
 
 Face pose at different angles in 3D, this leads to compression and expansion of angles within a face according to degree of inclination.
   <div align='center'>
-  <img src='M_Images/database.png'  width='400px'>
+  <img src='M_Images/angles/angle1'  width='200px'>
+  <img src='M_Images/angles/angle2'  width='200px'>
+  <img src='M_Images/angles/angle4'  width='200px'>
+  <img src='M_Images/angles/angle3'  width='200px'>
   </div>
 Example:
 
@@ -236,7 +239,20 @@ But, in our case **we don&#39;t need any exact shape, size or even relative posi
 
 It is just to bring extreme different face architecture into comparable range.    The relative position is not required between them, we just require inner approximate aspect ratio(angles) of a feature. Inter features are not compared. And moreover, these angles of a feature are taken as probability (angle/average(angles)), so they are again normalised within a frame itself.
 
+**Masks Driving Forces:** 
 
+  <div align='center'>
+  <img src='M_Images/exp/happy2.png'  width='200px'>
+  <img src='M_Images/exp/happy1.png'  width='200px'>
+  <img src='M_Images/exp/sad2.png'  width='200px'>
+  <img src='M_Images/exp/sad1.png'  width='200px'> 
+  <img src='M_Images/exp/angry2.png'  width='200px'>
+  <img src='M_Images/exp/angry1.png'  width='200px'>
+  <img src='M_Images/exp/disgust2.png'  width='200px'>
+  <img src='M_Images/exp/disgust1.png'  width='200px'> 
+  <img src='M_Images/exp/fear2.png'  width='200px'>
+  <img src='M_Images/exp/fear1.png'  width='200px'>
+  </div>
 
 ## Multi - Cascade Detectors:
 
@@ -256,8 +272,6 @@ The outcome of cascading is defined as expression feature intensity and represen
   <img src='M_Images/csd_ha.png'  width='175px'>
   <img src='M_Images/csd_sa.png'  width='175px'>
   <img src='M_Images/csd_fe.png'  width='175px'>
-  </div>
-  <div align='center'>
   <img src='M_Images/csd_an.png'  width='175px'>
   <img src='M_Images/csd_di.png'  width='175px'>
   </div>
