@@ -228,7 +228,7 @@ To determine these skin textures at different regions of the face, various &quot
 
 The cascades are trained using opencv functions **opencv\_haartraining and opencv\_traincascade.** They apply **HOG – LB** filters.
   <div align='center'>
-  <img src='M_Images/cas_n.jpg'  width='200px'>
+  <img src='M_Images/cas_n.jpg'  width='300px'>
   </div>
 Each Cascade's region of implementation is determined by nearest landmarks&#39; locations respectively.
 
@@ -267,7 +267,7 @@ The output, probabilities of emotions from both the model are combined based upo
 ## Result Presentation:
   
   <div align='center'>
-  <video src='M_Images/output.mov'  width='400px'>
+  <video src='M_Images/output.mov'  width='400px'></video>
   </div>
 
 
