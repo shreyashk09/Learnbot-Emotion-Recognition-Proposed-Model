@@ -329,7 +329,16 @@ The output, probabilities of emotions from both the model are combined based upo
   <image src='M_Images/1080p.gif'  width='500px'></video>
   </div>
 
+The final predicted emotion’s probability is used to measure intensity of the emotion. Moreover, it thus helps to classify neutral state of emotion.
 
+We take three layers to sub-classify the intensity of the emotion. 
+For example, 
+
+<div align='center'>
+  <image src='M_Images/presentform.png'  width='500px'></video>
+  </div>
+If only the two high probabilties conflict they give 50 as predicted probabilty. Thus, in stage 3 we are most confident with prediction and in stage 0, it's almost neutral or highly conflicting.
+ 
 ## Steps towards accuracy:
 
 - **--** Similar face alignment across frames
