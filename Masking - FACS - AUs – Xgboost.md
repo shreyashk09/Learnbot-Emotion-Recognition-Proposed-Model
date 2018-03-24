@@ -322,7 +322,8 @@ The output, probabilities of emotions from both the model are combined based upo
 <div align='center'>
   <image src='M_Images/outputform.png'  width='800px' height='250'></video>
   </div>
-  
+More the deviation in prediction probability, the high chances of distinct true prediction. The maximum of the final output is the predicted emotion.
+
 ## Result Presentation:
   
   <div align='center'>
