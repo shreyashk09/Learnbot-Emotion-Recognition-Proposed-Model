@@ -158,7 +158,7 @@ Further in consecutive frames Lucas–Kanade (LK) optical flow tracker can be us
  <p> <img src='M_Images/alp1.png'  width='500px'>
   </p>
   <p>
-  <img src='M_Images/alp3.png'  width='2750px'>
+  <img src='M_Images/alp3.png'  width='275px'>
   </p>
   </div>
 
@@ -227,13 +227,15 @@ Some of the most important facial muscles show their movements in form of skin t
 To determine these skin textures at different regions of the face, various &quot;Cascades&quot; can be used at different regions over the face.
 
 The cascades are trained using opencv functions **opencv\_haartraining and opencv\_traincascade.** They apply **HOG – LB** filters.
-
+  <div align='center'>
+  <img src='M_Images/cas_n.jpg'  width='300px'>
+  </div>
 Each Cascade's region of implementation is determined by nearest landmarks&#39; locations respectively.
 
 The outcome of cascading is defined as expression feature intensity and represented in form of binary {0,1}.
 
   <div align='center'>
-  <img src='Images/database.png'  width='400px'>
+  <img src='M_Images/database.png'  width='400px'>
   </div>
 
 ## AUs Xgboost (xgb\_1\_1):
@@ -241,7 +243,13 @@ The outcome of cascading is defined as expression feature intensity and represen
 The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38
 
   <div align='center'>
-  <img src='Images/database.png'  width='400px'>
+  <img src='M_Images/csd_ha.jpg'  width='300px'>
+  <img src='M_Images/csd_sa.png'  width='300px'>
+  <img src='M_Images/csd_fe.jpg'  width='300px'>
+  </div>
+  <div align='center'>
+  <img src='M_Images/csd_an.jpg'  width='300px'>
+  <img src='M_Images/csd_di.jpg'  width='300px'>
   </div>
 
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
@@ -263,7 +271,7 @@ The output, probabilities of emotions from both the model are combined based upo
 ## Result Presentation:
   
   <div align='center'>
-  <video src='Images/database.png'  width='400px'>
+  <video src='M_Images/output.mov'  width='400px'>
   </div>
 
 
