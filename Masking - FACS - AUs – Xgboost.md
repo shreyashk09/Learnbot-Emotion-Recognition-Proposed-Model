@@ -208,7 +208,12 @@ Thus,
  <div align='center'>
   <img src='M_Images/vecform.png'  width='800px' height='50'>
   </div>
+  
 To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume time (3D matrix) and don&#39;t we gives required solution. **So, we take relative variation of angle between wireframes for each feature within a frame and mutiply bya constant vaue(like 10)** This solves problem of any pose angles.
+
+***Challenges solved:***
+- Face can be posed in 2D or 3D, least alignment required
+- Don't depends on size and shape of face
 
 **Normalization of feature vector across the faces frames:** 
 
@@ -236,6 +241,7 @@ If the front view of face in the frame is visible clearly i.e., pose angle is le
   <img src='M_Images/ajr2.png'  width='200' height='225'>
   <img src='M_Images/ajr3.png'  width='300' height='225'>
   </div> 
+  
 If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. ***The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half.*** We calculate only for visible side and consider the same for both sides.
 
 **Golden Ratio:**
