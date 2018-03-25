@@ -6,13 +6,13 @@
 
 ### Aim Of Model:
 
-Our aim is to recognize the emotions of humans examining their facial expressions and classifying them into various emotion classes.
+Our aim is to recognize the emotions of humans examining their facial expressions and classify them into various emotion classes. The recognition software should distinguish among 5/6 different classes. 
 
 The model should recognize the emotions in real – time and should be very fast.
 
 The model should recognize emotions by performing moderate computations (no complex computations like DNNs) but should be very accurate.
 
-Emotions of a person is to be recognized can possess various poses of the face and the architecture of face may differ from one another.
+The emotions of a person to be recognized can possess various poses of the face and the structure of face may differ from one another.
 
 So, now our vision is clear and we focus on how to fulfill them.
 
@@ -40,13 +40,15 @@ So, now our vision is clear and we focus on how to fulfill them.
 - **--** 2 GB RAM
 - **--** Quad Core
 - **--** 32 GB Memory
-- **--** Ports for camera module.
+
+**Raspberry Pi 3 model**
+- **--** Video streaming via RPi_Cam_Web_Interface
 
 Minimum of above should be met for trained model to be executed.
 
 ### Software Requirements for Model:  
 
-Opencv, Python, Xgboost, Numpy, Matplotlib, imutils, Sckilite,  Qt
+Opencv, Python, Xgboost, Numpy, Matplotlib, imutils, Sckilite, Qt
 
 ### Runtime:
 
@@ -62,9 +64,7 @@ Emotion expressions on face is possible due to movement of various facial muscle
 
 ### Xgboost:
 
-XGBoost (Extreme Gradient Boosting) is an optimized distributed gradient boosting algorithm. Algorithm is designed to work with numeric values only.
-
-It is also known as &#39; **regularized boosting**&#39; technique because of its techniques to reduce overfitting problem automatically even with less training data.
+XGBoost (Extreme Gradient Boosting) is an optimized distributed gradient boosting algorithm. Algorithm is designed to work with numeric values only. It is also known as &#39; **regularized boosting**&#39; technique because of its techniques to reduce overfitting problem automatically even with less training data.
 
 The performance of xgboost is recorded to be more than other famous algorithms like DNN, random forest, etc. It is faster than other algorithms as it implements parallel processing.It helps to correct errors made by previously trained tree thus. Moreover, it allows to define custom optimization objectives and evaluation criteria. We can even start training an XGBoost model from its last iteration of previous run, which makes training simpler.
 
@@ -76,15 +76,15 @@ The performance of xgboost is recorded to be more than other famous algorithms l
   
 ## Overview:
 
-The model can be implemented for emotions recognition of human faces captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. The model tries to attain the accuracy and focuses on only required essential parameters.  It is designed such that it performs the suitable processes in parallel in order to reduce the runtime.
+The model can be implemented for emotions recognition of human faces captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. The model tries to attain the accuracy and focuses only on required essential features.  It is designed such that it performs the suitable processes parallely in order to reduce the runtime.
 
-During training phase, the model takes the inputs in the form of sequence of frames of each expression. This helps to classify the emotions accurately even at less expression features intensity. In runtime, the model is fed with captured images by Learnbot&#39;s camera module in real time.
+During training phase, the model takes the inputs in the form of sequence of frames of each expression. This helps to classify the emotions accurately even at less expression features intensity. In runtime, the model is fed with captured images by Learnbot&#39;s camera module in real time and transmitted via RPi_Cam_Web_Interface.
 
-The model is designed, don&#39;t require any sort of **pre-processing** and **face –alignment** as such. In order to reduce run-time and increase accuracy of further processes the image is grayscale and enhanced.
+The model is designed such that it don&#39;t require any sort of **pre-processing** and **face –alignment** as such. In order to reduce run-time and increase accuracy of further processes, the image frames are grayscale and enhanced.
 
-As the classification is carried into 5 prime emotions (and neutral), extracting key facial features is sufficient. To determine the feature vectors form the detected face frame, we plot **facial landmarks** over the face using AAM along with Lucas – Kanade (LK) algorithms. The facial landmarks are used to develop a **wireframe** across the face called as **mesh**. The details are extracted from the mesh as facial feature vectors. The mesh scientifically designed to fulfil multiple challenges.
+As the classification is carried into 5 prime emotions (and neutral), extracting key facial features is sufficient. To determine the feature vectors form the detected face frame, we plot **facial landmarks** over the face using AAM along with Lucas – Kanade (LK) algorithms. The facial landmarks are used to develop a **wireframe** across the face called as **mesh**. The details are extracted from the mesh as facial feature vectors. The mesh is scientifically designed to fulfil multiple challenges.
 
-The most important phase which gives model a new shape by increasing its accuracy, reducing runtime and makes it valid across different test cases, exceptions, etc. is facial feature extraction. It eliminates the need of pre-processing and facial alignment at vast level and brings uniformity across the images. For facial features angles between wireframes are considered, which don&#39;t change with change in face alignment, shape, size, rotation(3D), etc.
+The most important phase which gives model a new shape by increasing its accuracy, reducing runtime and makes it valid across different test cases, exceptions, etc. is facial feature extraction usign vlues of angles between wireframe. It eliminates the need of pre-processing and facial alignment at vast level and brings uniformity across the images. As upon processing the angles between wireframes don&#39;t change with change in face alignment, shape, size, rotation(3D & 2D), etc.
 
 To learn from facial skin textures (wrinkles) we implement a simple **HOG-LB cascades** near key landmark points.
 
@@ -92,7 +92,7 @@ An approximate but accurate enough, neutral expression mesh is generated for the
 
 These feature vectors can be clustered into groups representing various unique face actions called as &quot; **Action units**&quot;. The combinations of these Action Units helps to predict different emotions.
 
- The feature vectors are transformed to the **first level Xgboost** to determine the Action Units (AUs) of the corresponding expression sequences. Finally, the detected AUs are inputed into the **second level Xgboost** for facial expressions classification.
+ The feature vectors are traversed across the **first level Xgboost** to determine the Action Units (AUs) of the corresponding expression sequences. Finally, the detected AUs are traversed across the **second level Xgboost** for facial expressions classification.
 
 In parallel, another **Xgboost** model will classify emotion directly from feature vectors. The fused result gives us accurate predication.
 
@@ -100,7 +100,7 @@ The model is trained with sequence of expression frames starting with less expre
 
 ## Methodology:
 
-1. Image frame is captured by Learnbot camera in real – time.
+1. Image frame retrived from RPi_Cam_Web_Interface sent from Learnbot's camera in real – time.
 2. Cascades are used for detecting faces and cropping (into 64 x 64).
     (frontal to profile view in 3D)
 3. The face is to grayscale and applying cv.createCLAHE tuner.
@@ -117,7 +117,7 @@ The model is trained with sequence of expression frames starting with less expre
 
 ### Face Detection and Ranking:
 
-The captured images using Learnbot&#39;s camera may contain one or more faces at a time. The whole frame is investigated using Cascades for face detection from front view to profile view. The face – rectangles are then cropped are reshaped into 64 x 64 squares.
+The captured images using Learnbot&#39;s camera may contain one or more faces at a time. The whole frame is investigated using Cascades for face detection from front view to profile view. The face – rectangles then cropped are reshaped into 64 x 64 squares.
 
 The face - rectangles are of different sizes and located at different location across the frame based upon the position of human in front of Learnbot in 3D. These faces are assigned ranks as follows:
 
@@ -183,6 +183,8 @@ The angles at intersections don't change with change orientation of face about z
 
 Inorder to find the change in these driving forces we subtract the present frame mask&#39;s details with mask&#39;s details of neutral expression. The result is change in angles and displacements of nodes.
 
+***Vector_final = Vector_expression - Vector_neutral***
+
 To make it possible we first need to normalize the face within the frame and normalize faces across the frames.
 
 **Normalization of feature vectors within the face frame:**
@@ -196,7 +198,7 @@ Face pose at different angles in 3D, this leads to compression and expansion of 
   </div>
 Example:
 
-Let, a person looks diagonally at an angle towards right-bottom. The angles between wireframes of left eyebrow will be relatively greater than right eyebrow&#39;s for same expression as compared to normal pose angles of same expression.
+Let, a person looks diagonally at an angle towards right-bottom. The angles between wireframes of left eyebrow will be relatively greater than right eyebrow&#39;s for same expression as compared to face at normal pose angles of same expression.
 Thus,
 ***Feature Extraction:***
   <div align='center'>
@@ -209,7 +211,7 @@ Thus,
   <img src='M_Images/vecform.png'  width='800px' height='50'>
   </div>
   
-To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume time (3D matrix) and don&#39;t we gives required solution. **So, we take relative variation of angle between wireframes for each feature within a frame and mutiply bya constant vaue(like 10)** This solves problem of any pose angles.
+To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume time (3D matrix) and don&#39;t gives required solution. **So, we take relative variation of angle between wireframes for each feature within a frame and mutiply by a constant vaue(like 10)** This solves problem of any pose angles.
 
 ***Challenges solved:***
 - Face can be posed in 2D or 3D, least alignment required
@@ -217,11 +219,10 @@ To avoid such variation within a frame, we can apply face-alignment to center. B
 
 **Normalization of feature vector across the faces frames:** 
 
-Every person has variations in the structural positioning, shape and size of the features. To determine the expression on face of each individual we should know their neutral expression dimensions, so that we can subtract expressive frame from neutral frame of each person to direction of driving forces.
+Every person has variations in the structural positioning, shape and size of the features. To determine the expression on face of each individual we should know their neutral expression dimensions, so that we can subtract expressive frame from neutral frame of each person to the direction of driving forces.
 
-The neutral frame is generated using Golden Formula. The whole mask generation for neutral expression is not required. We just need inner approximate aspect ratio(angles) of each feature of a face. And this can be computed very fast
-
-using dimensions of face in the frame i.e, distance between an eye center and mid-point of both the eyes, distance between mid-point of eyes and nose center and pose angle.
+The neutral frame is generated using Golden Ratio Formula. The generation of whole mask for neutral expression is not required. We just need inner approximate aspect ratios(angles) of each feature of a face. And this can be computed very fast
+using stable dimensions of face in the frame i.e, distance between an eye center and mid-point of both the eyes, distance between mid-point of eyes and nose center and pose angle.
 
 Only, the landmarks for eyebrows and lips are plotted using Golden Ratio, that too separately. So, there is no constrain of overlapping neutral mask generated with the actual person&#39;s mask.
 
@@ -242,7 +243,7 @@ If the front view of face in the frame is visible clearly i.e., pose angle is le
   <img src='M_Images/ajr3.png'  width='300' height='225'>
   </div> 
   
-If the front view of face in the frame is not visible clearly i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. ***The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half.*** We calculate only for visible side and consider the same for both sides.
+If the front view of the face in the frame is not clearly visible i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. ***The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half.*** We calculate only for visible side and consider the same for both sides.
 
 **Golden Ratio:**
 
@@ -299,7 +300,12 @@ The outcome of cascading is defined as expression feature intensity and represen
 
 ## AUs Xgboost (xgb\_1\_1):
 
-The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38
+The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are to be recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38. Out of these the following are particulars for valid emotion recognition.
+
+</div><div align='center'>
+  <img src='M_Images/csd_an.png'  width='175px'>
+  <img src='M_Images/csd_di.png'  width='175px'>
+  </div>
 
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
   <div align='center'>
@@ -317,12 +323,13 @@ Due to less accurate prediction of activeness of AUs, the final classification m
 
 ## Fused Result:
 
-The output, probabilities of emotions from both the model are combined based upon strength of each emotion relative to others from each model.
+The output probabilities of emotions from both the model are combined based upon strength of each emotion relative to others from each model.
 
 <div align='center'>
   <image src='M_Images/outputform.png'  width='800px' height='250'></video>
   </div>
-More the deviation in prediction probability, the high chances of distinct true prediction. The maximum of the final output is the predicted emotion.
+  
+More the deviation in prediction probabilities from each model, the high chances of distinct and valid prediction. The maximum probability of the final output is our predicted emotion.
 
 ## Result Presentation:
   
