@@ -304,12 +304,3 @@ Video Classification \[ <https://arxiv.org/pdf/1504.01561v1.pdf> \]
 
 
 
-# Things to be added in above proposal:
-- API:  
-RETURN( error-codes/access-code,messages)
-messages: error_messege or detailed output values
-- High Deviation Preprocessing:
-Precised Normalisation of face. Then, make-up over face (different color-shades for each feature deviation).
-- the faces will be ranked by face rectangle size in descending order.
-- 
--
