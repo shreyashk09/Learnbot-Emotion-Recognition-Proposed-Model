@@ -26,4 +26,5 @@
 
 ### Demo Model Video:
 
-### Oputput Presentation Video:
+### Optional DNN model:
+- [CNN-LSTM](https://github.com/shreyashk09/Learnbot-Emotion-Recognition-Proposed-Model/blob/master/Optional%20Model/CNN_LSTM.md)
