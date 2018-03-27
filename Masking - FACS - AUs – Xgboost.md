@@ -293,11 +293,6 @@ The region of interst (ROI) is determined by their nearest landmarks&#39; on the
 
 The various face expression feature vectors can be clustered together, to define a cumulative muscle actions, called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are to be recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38. Out of these the following are particulars for valid emotion recognition.
 
-</div><div align='center'>
-  <img src='M_Images/csd_an.png'  width='175px'>
-  <img src='M_Images/csd_di.png'  width='175px'>
-  </div>
-
 A xgboost model is created where inputs are the face feature vectors, and the output is classified Action Units. The model tree is trained such that the combinations of definite range of varying feature intensities are clustered under each Action Units. The model is called FACS.
   <div align='center'>
   <img src='M_Images/facs.png'  width='500px'>
