@@ -6,15 +6,13 @@
 
 ### Aim Of Model:
 
-Our aim is to recognize the emotions of humans examining their facial expressions and classify them into various emotion classes. The recognition software should distinguish among 5/6 different classes. 
+Our aim is to recognize the emotions of humans examining their facial expressions and classify them into various emotion classes. The software should distinguish emotions among 5 of 6 different classes. They are ‘happy’, ‘sad’, ‘fear’, ‘disgust’ and ‘angry’ along with neutral state.
 
 The model should recognize the emotions in real – time and should be very fast.
 
-The model should recognize emotions by performing moderate computations (no complex computations like DNNs) but should be very accurate.
+It should recognize emotions by performing moderate computations (no complex computations like DNNs) but should be very accurate.
 
 The emotions of a person to be recognized can possess various poses of the face and the structure of face may differ from one another.
-
-So, now our vision is clear and we focus on how to fulfill them.
 
 ### Features:
 
@@ -48,13 +46,11 @@ Minimum of above should be met for trained model to be executed.
 
 ### Software Requirements for Model:  
 
-Opencv, Python, Xgboost, Numpy, Matplotlib, imutils, Sckilite, Qt
-
-### Runtime:
+Opencv, Python, Xgboost, Numpy, Matplotlib, imutils, Sckilite 
 
 ### Technologies and algorithms used:
 
-HOG LB cascades, facial landmarks AAM, face Golden Ratio modeling, Action Units (AUs), Facial Action Coding System(FACS), Xgboost, etc.
+HOG LBP cascades, Gabor LBP cascades, facial landmarks AAM, face Golden Ratio modeling, Action Units (AUs), Facial Action Coding System(FACS), Xgboost, etc.
 
 ##
 
@@ -76,21 +72,19 @@ The performance of xgboost is recorded to be more than other famous algorithms l
   
 ## Overview:
 
-The model can be implemented for emotions recognition of human faces captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. The model tries to attain the accuracy and focuses only on required essential features.  It is designed such that it performs the suitable processes parallely in order to reduce the runtime.
+The model can be implemented for emotions recognition of human face captured by Learnbot&#39;s camera module. The model computes moderate operations and performs in real time with sufficient frames per seconds. It performs suitable processes parallely in order to reduce the runtime.
 
-During training phase, the model takes the inputs in the form of sequence of frames of each expression. This helps to classify the emotions accurately even at less expression features intensity. In runtime, the model is fed with captured images by Learnbot&#39;s camera module in real time and transmitted via RPi_Cam_Web_Interface.
+During training phase, the model takes the inputs in the form of sequence of frames of each expression. This helps to classify the emotions accurately even at less expression intensity. During runtime, the model is fed with captured images by Learnbot&#39;s camera module in real time. The model is designed such that it requires least **pre-processing** and **face –alignment**. This reduces run-time and increase accuracy of further processes.
 
-The model is designed such that it don&#39;t require any sort of **pre-processing** and **face –alignment** as such. In order to reduce run-time and increase accuracy of further processes, the image frames are grayscale and enhanced.
-
-As the classification is carried into 5 prime emotions (and neutral), extracting key facial features is sufficient. To determine the feature vectors form the detected face frame, we plot **facial landmarks** over the face using AAM along with Lucas – Kanade (LK) algorithms. The facial landmarks are used to develop a **wireframe** across the face called as **mesh**. The details are extracted from the mesh as facial feature vectors. The mesh is scientifically designed to fulfil multiple challenges.
+As the classification is carried into 5 prime emotions (and neutral), extracting key facial features is sufficient. To determine the feature vectors form the detected face frame, we plot **facial landmarks** over the face using AAM along with Lucas – Kanade (LK) algorithms. The facial landmarks are used to develop a **wireframe** across the face called as **mask**. The details are extracted from the mask, as facial feature vectors. The mask is scientifically designed to fulfil multiple challenges.
 
 The most important phase which gives model a new shape by increasing its accuracy, reducing runtime and makes it valid across different test cases, exceptions, etc. is facial feature extraction usign vlues of angles between wireframe. It eliminates the need of pre-processing and facial alignment at vast level and brings uniformity across the images. As upon processing the angles between wireframes don&#39;t change with change in face alignment, shape, size, rotation(3D & 2D), etc.
 
-To learn from facial skin textures (wrinkles) we implement a simple **HOG-LB cascades** near key landmark points.
+To learn from facial skin textures (wrinkles) we implement a simple **HOG-LBP and Gabor-LBP cascades** near key landmark points.
 
 An approximate but accurate enough, neutral expression mesh is generated for the same face detected using the &quot; **Golden Ratios**&quot;. The driving forces are calculated between the &quot;expressive mask&quot; and &quot;neutral mask&quot;. The driving forces as well as the independent facial feature of expressive frame is combined in a list to form Feature Vectors List. The list is traversed across the following Xgboost Classifier to get the predicted emotion.
 
-These feature vectors can be clustered into groups representing various unique face actions called as &quot; **Action units**&quot;. The combinations of these Action Units helps to predict different emotions.
+These feature vectors can be clustered together representing various unique face actions called as &quot; **Action units**&quot;. The combinations of these Action Units helps to predict different emotions.
 
  The feature vectors are traversed across the **first level Xgboost** to determine the Action Units (AUs) of the corresponding expression sequences. Finally, the detected AUs are traversed across the **second level Xgboost** for facial expressions classification.
 
@@ -146,7 +140,7 @@ Preprocessing: original image-->gray image-->clahe image
 
 Upon minimum pre-processing, the image becomes suitable to derive facial landmarks which could be further used to extract facial features.
 
-The facial landmarks are accumulated based upon pose of face in XZ – plane and YZ – plane. So, we define a **threshold angle (alpha)** about which the face is distinguished as &quot; **Full-Face**&quot; view and &quot; **Half- Face**&quot; view. In case of Half – Face view only one half of face is used to determine the expression. The other half is either incapable of determining the exact landmark positions and distinguish among them or is not visible.
+The facial landmarks are accumulated based upon pose of face in XZ – plane and YZ – plane. So, we define a **threshold angle (alpha)** upto which the face is considered as &quot; **Full-Face**&quot; view and beyond it as &quot; **Half- Face**&quot; view. In case of Half – Face view only one half of face is used to determine the expression. The other half is either incapable of determining the exact landmark positions and distinguish among them or is not visible.
 
 The initial frame landmarks are estimated using Active Appearance Model (AAM). An AAM face model consists a shape model and a texture model. The fitting procedure iteratively adjust the model until satisfy.
 
@@ -185,11 +179,11 @@ Inorder to find the change in these driving forces we subtract the present frame
 
 ***Vector_final = Vector_expression - Vector_neutral***
 
-To make it possible we first need to normalize the face within the frame and normalize faces across the frames.
+To make it possible we first need to normalize the face within the frame and normalize the face across the frames.
 
 **Normalization of feature vectors within the face frame:**
 
-Face pose at different angles in 3D, this leads to compression and expansion of angles within a face according to degree of inclination.
+Face poses different angles in 3D, this leads to compression and expansion of angles within a face according to degree of inclination.
   <div align='center'>
   <img src='M_Images/angles/anlge1.png'  width='200px'>
   <img src='M_Images/angles/angle2.png'  width='200px'>
@@ -211,7 +205,7 @@ Thus,
   <img src='M_Images/vecform.png'  width='800px' height='50'>
   </div>
   
-To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume time (3D matrix) and don&#39;t gives required solution. **So, we take relative variation of angle between wireframes for each feature within a frame and mutiply by a constant vaue(like 10)** This solves problem of any pose angles.
+To avoid such variation within a frame, we can apply face-alignment to center. But, face-alignment of each frame will consume runtime (3D matrix) and don&#39;t gives required solution. **So, we take relative variation of angle between wireframes for each feature within a frame and mutiply by a constant vaue(like 10)** This solves problem of any pose angles.
 
 ***Challenges solved:***
 - Face can be posed in 2D or 3D, least alignment required
@@ -219,9 +213,9 @@ To avoid such variation within a frame, we can apply face-alignment to center. B
 
 **Normalization of feature vector across the faces frames:** 
 
-Every person has variations in the structural positioning, shape and size of the features. To determine the expression on face of each individual we should know their neutral expression dimensions, so that we can subtract expressive frame from neutral frame of each person to the direction of driving forces.
+Every person has variations in the structure of face. To determine the feature vectors of the face of an individual, we need their neutral expression dimensions, so that we can subtract neutral frame features from apex expression frame featues of that person.
 
-The neutral frame is generated using Golden Ratio Formula. The generation of whole mask for neutral expression is not required. We just need inner approximate aspect ratios(angles) of each feature of a face. And this can be computed very fast
+The neutral frame can be generated using Golden Ratio Formula. The generation of whole mask for neutral expression is not required. We just need inner approximate aspect ratios(angles) of each feature of a face. And this can be computed very fast
 using stable dimensions of face in the frame i.e, distance between an eye center and mid-point of both the eyes, distance between mid-point of eyes and nose center and pose angle.
 
 Only, the landmarks for eyebrows and lips are plotted using Golden Ratio, that too separately. So, there is no constrain of overlapping neutral mask generated with the actual person&#39;s mask.
@@ -243,22 +237,22 @@ If the front view of face in the frame is visible clearly i.e., pose angle is le
   <img src='M_Images/ajr3.png'  width='300' height='225'>
   </div> 
   
-If the front view of the face in the frame is not clearly visible i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. ***The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half.*** We calculate only for visible side and consider the same for both sides.
+If the front view of the face in the frame is not clearly visible i.e., pose angle is greater than **threshold angle (alpha),** we use our half mask. ***The feature extracted from one half mask (suppose left view of face) are replicated same as for the other half (mirroring).*** We calculate only for visible side and consider the same for both sides.
 
 **Golden Ratio:**
 
-Golden Ratio is the most perfect fitting number, i.e, it fits shapes reduced with this ratio upto infinity within a single frame. An ideal face is said to have feature positioned relatively based on this Golden Ratio and it derivatives.
+Golden Ratio is the most perfect fitting number. An ideal face is said to have feature positioned relatively based on this Golden Ratio and it derivatives.
 
-Even with a perfectly proportioned face though, there are endless variations in the shapes and sizes of each facial feature (eyes, eyebrows, lips, nose, etc.) that gives rise to the distinctive appearance of each person and provide for endless variations.
+There are variations in the shape and size of each facial feature (eyes, eyebrows, lips, nose, etc.), it's not necessary for golden ratio to predict exact neutral state of a face.
   <div align='center'>
   <img src='M_Images/golden ratio1.jpg'  width='200px'>
   <img src='M_Images/golden ratio2.jpg'  width='200px'>
   <img src='M_Images/golden ratio3.png'  width='200px'>
   <img src='M_Images/lips.jpg'  width='200px'>
   </div>
-But, in our case **we don&#39;t need any exact shape, size or even relative position of features.** We just need a approximate constant value that can subtracted from the expression mask to normalise across frames which varies negligibly with across the frames.
+But, in our case **we don&#39;t need any exact shape, size or even relative position of features.** We just need an approximate constant value that can subtracted from the expression mask to normalise across frames which varies negligibly with across the frames.
 
-It is just to bring extreme different face architecture into comparable range.    The relative position is not required between them, we just require inner approximate aspect ratio(angles) of a feature. Inter features are not compared. And moreover, these angles of a feature are taken as probability (angle/average(angles)), so they are again normalised within a frame itself.
+It is just to bring faces with extremly different structures into comparable range.    The relative position is not required between them, we just require inner approximate aspect ratio(angles) of a feature. 
 
 **Masks Driving Forces:** 
 
@@ -279,15 +273,12 @@ It is just to bring extreme different face architecture into comparable range.  
 
 Some of the most important facial muscles show their movements in form of skin texture. These are the case where landmarks may not show drastic movements but the skin texture is enough to determine face expression features.
 
-To determine these skin textures at different regions of the face, various &quot;Cascades&quot; can be used at different regions over the face.
-
-The cascades are trained using opencv functions **opencv\_haartraining and opencv\_traincascade.** They apply **HOG – LB** filters.
+Skin textures can be examined at different regions of interest of the face using various &quot;HOG LBP or Gabor LBP Cascades&quot;.
+The cascades can be easily trained using opencv functions **opencv\_haartraining and opencv\_traincascade.** 
   <div align='center'>
   <img src='M_Images/cas_n.jpg'  width='300px'>
   </div>
-Each Cascade's region of implementation is determined by nearest landmarks&#39; locations respectively.
-
-The outcome of cascading is defined as expression feature intensity and represented in form of binary {0,1}.
+The region of interst (ROI) is determined by their nearest landmarks&#39; on the face. The output feature vectors derived using cascades are represented in form of binary {0,1}.
  
   <div align='center'>
   <img src='M_Images/csd_ha.png'  width='175px'>
@@ -300,7 +291,7 @@ The outcome of cascading is defined as expression feature intensity and represen
 
 ## AUs Xgboost (xgb\_1\_1):
 
-The clusters of various face expression feature vectors can be formed to define a cumulative muscle actions called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are to be recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38. Out of these the following are particulars for valid emotion recognition.
+The various face expression feature vectors can be clustered together, to define a cumulative muscle actions, called as Action Units. The classification is computed using xgboost algorithm. 17 AUs are to be recognized, they are AU1, AU2, AU4, AU5, AU6, AU7, AU9, AU12, AU14, AU15, AU17, AU20, AU23, AU24, AU25, AU27 and AU38. Out of these the following are particulars for valid emotion recognition.
 
 </div><div align='center'>
   <img src='M_Images/csd_an.png'  width='175px'>
@@ -319,7 +310,7 @@ The second fold Xgboost model is based upon activeness of various AUs to classif
 
 ## Full – Xgboost (xgb\_2):
 
-Due to less accurate prediction of activeness of AUs, the final classification may lead to wrong predictions. Thus to avoid wrong prediction and get accurate probability distribution across emotions, we implement a model computing emotion classification directly based upon feature vectors. The model runs in parallel to 2-fold Xgboost model.
+Due to less accuracy in  prediction of activeness of AUs, the final classification may lead to wrong predictions. Thus to overcome wrong predictions and get accurate probability distribution across emotions, we implement a model computing emotion classification directly by classifying feature vectors into emoiton classes. The model runs in parallel to 2-fold Xgboost model.
 
 ## Fused Result:
 
