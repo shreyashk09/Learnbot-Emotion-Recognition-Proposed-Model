@@ -358,7 +358,18 @@ If only the two high probabilties conflict they give 50 as predicted probabilty.
 **Thank You**
 
 **References:**
+1. Xiaorong Pu, Ke Fan, Xiong Chen, Luping Ji, Zhihu Zhou, Facial expression recognition from image sequences using twofold random forest classifier, Neurocomputing, Volume 168, 2015,Pages 1173-1180, ISSN 0925-2312,
+link: http://www.sciencedirect.com/science/article/pii/S0925231215006220 
 
+2. Facial Action Coding System (FACS) – A Visual Guidebook: https://imotions.com/blog/facial-action-coding-system/
 
+3. Kotsia I, Pitas I,Facial Expression Recognition in Image Sequences Using Geometric Deformation Features and Support Vector Machines
+link: http://sci-hub.tw/http://ieeexplore.ieee.org/document/4032815/
 
+4. Golden Ratio: https://www.goldennumber.net/golden-ratio-design-beauty-face-evidence-facts/#jp-carousel-8098 
+
+5. Packiriswamy V, Kumar P, Rao M, Identification of Facial Shape by Applying Golden Ratio to the Facial Measurements: An Interracial Study in Malaysian Population, N Am J Med Sci. 2012 Dec; 4(12): 624–629. doi: 10.4103/1947-2714.104312
+link: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530317/
+
+6. Candide Face Masking: http://www.icg.isy.liu.se/candide/
 ** **
