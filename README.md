@@ -24,7 +24,6 @@
 - [Concise Output](https://github.com/shreyashk09/Learnbot-Emotion-Recognition-Proposed-Model/blob/master/Masking%20-%20FACS%20-%20AUs%20%E2%80%93%20Xgboost.md#result-presentation)
 - [Steps towards accuracy](https://github.com/shreyashk09/Learnbot-Emotion-Recognition-Proposed-Model/blob/master/Masking%20-%20FACS%20-%20AUs%20%E2%80%93%20Xgboost.md#steps-towards-accuracy)
 
-### Demo Model Video:
 
 ### Optional DNN model:
 - [CNN-LSTM](https://github.com/shreyashk09/Learnbot-Emotion-Recognition-Proposed-Model/blob/master/Optional%20Model/CNN_LSTM.md)
